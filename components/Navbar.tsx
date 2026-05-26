@@ -9,32 +9,37 @@ export default function Navbar() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <nav className="fixed top-0 w-full z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-lg border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 bg-sky-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl">T</div>
-          <span className="font-semibold text-2xl">TaskFlow</span>
+          <div className="w-9 h-9 bg-linear-to-br from-sky-500 to-blue-600 rounded-2xl flex items-center justify-center font-bold text-xl">
+            T
+          </div>
+          <span className="font-semibold text-2xl tracking-tight">TaskFlow</span>
         </div>
 
-        <div className="hidden md:flex items-center gap-10">
-          <a href="#features" className="hover:text-sky-600 transition-colors">Características</a>
-          <a href="#precios" className="hover:text-sky-600 transition-colors">Precios</a>
-          <a href="#testimonios" className="hover:text-sky-600 transition-colors">Testimonios</a>
+        <div className="hidden md:flex items-center gap-10 text-sm font-medium">
+          <a href="#features" className="hover:text-sky-400 transition">Características</a>
+          <a href="#precios" className="hover:text-sky-400 transition">Precios</a>
+          <a href="#testimonios" className="hover:text-sky-400 transition">Testimonios</a>
         </div>
 
         <div className="flex items-center gap-4">
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            className="p-3 rounded-xl hover:bg-white/10 transition"
           >
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </button>
-          
-          <a href="#contacto" className="hidden md:block px-6 py-2.5 rounded-2xl bg-zinc-900 dark:bg-white dark:text-zinc-900 text-white font-medium hover:scale-105 transition">
+
+          <a 
+            href="#precios"
+            className="px-6 py-2.5 bg-white text-black rounded-2xl font-semibold hover:bg-white/90 transition"
+          >
             Empezar gratis
           </a>
 
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden">
+          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden p-3">
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
