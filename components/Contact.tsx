@@ -3,15 +3,6 @@
 import { useState } from "react";
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.error("❌ Faltan variables de Supabase. Verifica tu archivo .env.local");
-}
-
-const supabase = createClient(supabaseUrl!, supabaseAnonKey!);
-
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -23,30 +14,43 @@ export default function Contact() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
+  // Crear cliente SUPABASE dentro del componente (importante para Vercel)
+  const getSupabase = () => {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseAnonKey) {
+      throw new Error("Faltan variables de Supabase");
+    }
+
+    return createClient(supabaseUrl, supabaseAnonKey);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
 
-    if (!supabaseUrl || !supabaseAnonKey) {
-      setError("Error de configuración: Variables de Supabase no encontradas.");
+    try {
+      const supabase = getSupabase();
+
+      const { error: supabaseError } = await supabase
+        .from('leads')
+        .insert([formData]);
+
+      if (supabaseError) {
+        console.error(supabaseError);
+        setError("Error al enviar el formulario. Inténtalo de nuevo.");
+      } else {
+        setSuccess(true);
+        setFormData({ name: "", email: "", company: "", message: "" });
+        setTimeout(() => setSuccess(false), 6000);
+      }
+    } catch (err) {
+      setError("Error de configuración. Verifica las variables de entorno.");
+      console.error(err);
+    } finally {
       setLoading(false);
-      return;
-    }
-
-    const { error: supabaseError } = await supabase
-      .from('leads')
-      .insert([formData]);
-
-    setLoading(false);
-
-    if (supabaseError) {
-      console.error(supabaseError);
-      setError("Error al enviar el formulario. Inténtalo de nuevo.");
-    } else {
-      setSuccess(true);
-      setFormData({ name: "", email: "", company: "", message: "" });
-      setTimeout(() => setSuccess(false), 6000);
     }
   };
 
