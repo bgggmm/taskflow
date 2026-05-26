@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Desactivar Turbopack en producción temporalmente si da problemas
+  experimental: {
+    // turbo: {} // comenta esto si sigue fallando
+  },
 };
 
 export default nextConfig;
