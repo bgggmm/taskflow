@@ -20,8 +20,8 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-10 text-sm font-medium">
           <a href="#features" className="hover:text-sky-400 transition">Características</a>
-          <a href="#precios" className="hover:text-sky-400 transition">Precios</a>
           <a href="#testimonios" className="hover:text-sky-400 transition">Testimonios</a>
+          <a href="#precios" className="hover:text-sky-400 transition">Precios</a>
         </div>
 
         <div className="flex items-center gap-4">
