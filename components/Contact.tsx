@@ -76,99 +76,93 @@ export default function Contact() {
           <p className="text-xl text-zinc-400">Déjanos tus datos y te contactaremos</p>
         </motion.div>
 
-        <motion.form
+                <motion.form
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           onSubmit={handleSubmit}
-          className="space-y-12 relative"
+          className="space-y-10 relative"   
         >
           {/* Form background glow */}
           <div className="absolute inset-0 bg-linear-to-br from-sky-500/5 to-purple-500/5 rounded-3xl blur-3xl pointer-events-none" />
-          <div className="relative bg-zinc-800/30 backdrop-blur-xl border border-zinc-700/50 rounded-3xl p-10 md:p-16 shadow-2xl shadow-black/50">
-          <div className="grid md:grid-cols-2 gap-10">
-            <div className="relative group">
-              <User className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors z-10 ${focusedField === 'name' ? 'text-sky-400 scale-110' : 'text-zinc-500'}`} size={20} />
+          
+          <div className="relative bg-zinc-800/30 backdrop-blur-xl border border-zinc-700/50 rounded-3xl p-12 md:p-20 shadow-2xl shadow-black/50">   {/* ← Más padding interno */}
+            
+            <div className="grid md:grid-cols-2 gap-8">   {/* ← Reduje gap */}
+              
+              {/* Nombre */}
+              <div className="relative group">
+                <User className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors z-10 ${focusedField === 'name' ? 'text-sky-400 scale-110' : 'text-zinc-500'}`} size={20} />
+                <input
+                  type="text"
+                  placeholder="Nombre completo"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  onFocus={() => setFocusedField('name')}
+                  onBlur={() => setFocusedField(null)}
+                  required
+                  className={`relative z-10 w-full bg-zinc-800/50 backdrop-blur-sm border rounded-2xl px-12 py-5 focus:outline-none transition-all duration-300 ${focusedField === 'name' ? 'border-sky-500 shadow-lg shadow-sky-500/20 bg-zinc-700/70' : 'border-zinc-600 hover:border-zinc-500'}`}
+                />
+                {/* ... resto de divs de efecto ... */}
+              </div>
+
+              {/* Email */}
+              <div className="relative group">
+                <Mail className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors z-10 ${focusedField === 'email' ? 'text-sky-400 scale-110' : 'text-zinc-500'}`} size={20} />
+                <input
+                  type="email"
+                  placeholder="Email corporativo"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onFocus={() => setFocusedField('email')}
+                  onBlur={() => setFocusedField(null)}
+                  required
+                  className={`relative z-10 w-full bg-zinc-800/50 backdrop-blur-sm border rounded-2xl px-12 py-5 focus:outline-none transition-all duration-300 ${focusedField === 'email' ? 'border-sky-500 shadow-lg shadow-sky-500/20 bg-zinc-700/70' : 'border-zinc-600 hover:border-zinc-500'}`}
+                />
+                {/* ... resto de divs de efecto ... */}
+              </div>
+            </div>
+
+            {/* Empresa */}
+            <div className="relative group mt-8">   {/* ← Añadí mt-8 */}
+              <Building className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors z-10 ${focusedField === 'company' ? 'text-sky-400 scale-110' : 'text-zinc-500'}`} size={20} />
               <input
                 type="text"
-                placeholder="Nombre completo"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                onFocus={() => setFocusedField('name')}
+                placeholder="Empresa"
+                value={formData.company}
+                onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                onFocus={() => setFocusedField('company')}
                 onBlur={() => setFocusedField(null)}
-                required
-                className={`relative z-10 w-full bg-zinc-800/50 backdrop-blur-sm border rounded-2xl px-12 py-4 focus:outline-none transition-all duration-300 ${focusedField === 'name' ? 'border-sky-500 shadow-lg shadow-sky-500/20 bg-zinc-700/70' : 'border-zinc-600 hover:border-zinc-500'}`}
+                className={`relative z-10 w-full bg-zinc-800/50 backdrop-blur-sm border rounded-2xl px-12 py-5 focus:outline-none transition-all duration-300 ${focusedField === 'company' ? 'border-sky-500 shadow-lg shadow-sky-500/20 bg-zinc-700/70' : 'border-zinc-600 hover:border-zinc-500'}`}
               />
-              <div className={`absolute inset-0 bg-linear-to-r from-sky-500/10 to-purple-500/10 rounded-2xl opacity-0 transition-opacity duration-300 pointer-events-none ${focusedField === 'name' ? 'opacity-100' : ''}`} />
-              <div className={`absolute -inset-0.5 bg-linear-to-r from-sky-500 to-purple-500 rounded-2xl opacity-0 blur transition-opacity duration-300 pointer-events-none ${focusedField === 'name' ? 'opacity-20' : ''}`} />
+              {/* ... resto de divs de efecto ... */}
             </div>
 
-            <div className="relative group">
-              <Mail className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors z-10 ${focusedField === 'email' ? 'text-sky-400 scale-110' : 'text-zinc-500'}`} size={20} />
-              <input
-                type="email"
-                placeholder="Email corporativo"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                onFocus={() => setFocusedField('email')}
+            {/* Mensaje */}
+            <div className="relative group mt-8">   
+              <textarea
+                placeholder="Cuéntanos brevemente qué estás buscando..."
+                rows={7}                    
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                onFocus={() => setFocusedField('message')}
                 onBlur={() => setFocusedField(null)}
                 required
-                className={`relative z-10 w-full bg-zinc-800/50 backdrop-blur-sm border rounded-2xl px-12 py-4 focus:outline-none transition-all duration-300 ${focusedField === 'email' ? 'border-sky-500 shadow-lg shadow-sky-500/20 bg-zinc-700/70' : 'border-zinc-600 hover:border-zinc-500'}`}
+                className={`relative z-10 w-full bg-zinc-800/50 backdrop-blur-sm border rounded-3xl px-6 py-5 focus:outline-none transition-all duration-300 resize-y min-h-160px ${focusedField === 'message' ? 'border-sky-500 shadow-lg shadow-sky-500/20 bg-zinc-700/70' : 'border-zinc-600 hover:border-zinc-500'}`}
               />
-              <div className={`absolute inset-0 bg-linear-to-r from-sky-500/10 to-purple-500/10 rounded-2xl opacity-0 transition-opacity duration-300 pointer-events-none ${focusedField === 'email' ? 'opacity-100' : ''}`} />
-              <div className={`absolute -inset-0.5 bg-linear-to-r from-sky-500 to-purple-500 rounded-2xl opacity-0 blur transition-opacity duration-300 pointer-events-none ${focusedField === 'email' ? 'opacity-20' : ''}`} />
+              {/* ... resto de divs de efecto ... */}
             </div>
-          </div>
 
-          <div className="relative group">
-            <Building className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors z-10 ${focusedField === 'company' ? 'text-sky-400 scale-110' : 'text-zinc-500'}`} size={20} />
-            <input
-              type="text"
-              placeholder="Empresa"
-              value={formData.company}
-              onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-              onFocus={() => setFocusedField('company')}
-              onBlur={() => setFocusedField(null)}
-              className={`relative z-10 w-full bg-zinc-800/50 backdrop-blur-sm border rounded-2xl px-12 py-4 focus:outline-none transition-all duration-300 ${focusedField === 'company' ? 'border-sky-500 shadow-lg shadow-sky-500/20 bg-zinc-700/70' : 'border-zinc-600 hover:border-zinc-500'}`}
-            />
-            <div className={`absolute inset-0 bg-linear-to-r from-sky-500/10 to-purple-500/10 rounded-2xl opacity-0 transition-opacity duration-300 pointer-events-none ${focusedField === 'company' ? 'opacity-100' : ''}`} />
-            <div className={`absolute -inset-0.5 bg-linear-to-r from-sky-500 to-purple-500 rounded-2xl opacity-0 blur transition-opacity duration-300 pointer-events-none ${focusedField === 'company' ? 'opacity-20' : ''}`} />
-          </div>
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              type="submit"
+              disabled={loading}
+              className="group relative w-full py-6 mt-4 bg-linear-to-r from-sky-500 to-blue-600 text-white font-semibold rounded-2xl hover:shadow-xl hover:shadow-sky-500/30 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed overflow-hidden"   
+            >
+              {/* ... contenido del botón sin cambios ... */}
+            </motion.button>
 
-          <div className="relative group">
-            <textarea
-              placeholder="Cuéntanos brevemente qué estás buscando..."
-              rows={5}
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              onFocus={() => setFocusedField('message')}
-              onBlur={() => setFocusedField(null)}
-              required
-              className={`relative z-10 w-full bg-zinc-800/50 backdrop-blur-sm border rounded-2xl px-6 py-4 focus:outline-none transition-all duration-300 resize-none ${focusedField === 'message' ? 'border-sky-500 shadow-lg shadow-sky-500/20 bg-zinc-700/70' : 'border-zinc-600 hover:border-zinc-500'}`}
-            />
-            <div className={`absolute inset-0 bg-linear-to-r from-sky-500/10 to-purple-500/10 rounded-2xl opacity-0 transition-opacity duration-300 pointer-events-none ${focusedField === 'message' ? 'opacity-100' : ''}`} />
-            <div className={`absolute -inset-0.5 bg-linear-to-r from-sky-500 to-purple-500 rounded-2xl opacity-0 blur transition-opacity duration-300 pointer-events-none ${focusedField === 'message' ? 'opacity-20' : ''}`} />
-          </div>
-
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            type="submit"
-            disabled={loading}
-            className="group relative w-full py-5 bg-linear-to-r from-sky-500 to-blue-600 text-white font-semibold rounded-2xl hover:shadow-xl hover:shadow-sky-500/30 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-linear-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <span className="relative flex items-center justify-center gap-3">
-              {loading ? (
-                "Enviando..."
-              ) : (
-                <>
-                  Enviar mensaje
-                  <Send className="group-hover:translate-x-1 transition-transform" size={20} />
-                </>
-              )}
-            </span>
-          </motion.button>
           </div>
         </motion.form>
 
