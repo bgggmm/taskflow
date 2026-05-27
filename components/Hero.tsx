@@ -1,11 +1,18 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import MagneticButton from "./MagneticButton";
+import TextReveal from "./TextReveal";
 
 export default function Hero() {
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+
   // Generate particle data once on mount using lazy initialization
   const [particles] = useState<Array<{
     left: number;
@@ -61,13 +68,14 @@ export default function Hero() {
       </div>
 
       {/* Glow effect behind the image */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sky-500/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-150 h-150 bg-sky-500/20 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 pt-8 md:pt-0 grid md:grid-cols-2 gap-12 items-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          style={{ y: y1, opacity }}
         >
           <div className="inline-flex items-center gap-2 px-5 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-sm mb-6 text-white hover:bg-white/15 transition-all cursor-default">
             <span className="relative flex h-2 w-2">
@@ -78,36 +86,34 @@ export default function Hero() {
           </div>
 
           <h1 className="text-6xl md:text-7xl font-bold leading-[1.05] text-white mb-6">
-            Fluye mejor.<br />
-            <span className="bg-gradient-to-r from-sky-400 via-blue-500 to-purple-500 bg-clip-text text-transparent animate-gradient">
-              Produce más.
+            <TextReveal delay={0.2}>Fluye mejor.</TextReveal><br />
+            <span className="bg-linear-to-r from-sky-400 via-blue-500 to-purple-500 bg-clip-text text-transparent animate-gradient">
+              <TextReveal delay={0.4}>Produce más.</TextReveal>
             </span>
           </h1>
 
           <p className="text-xl text-zinc-300 mb-10 max-w-lg">
-            La herramienta moderna que tu equipo necesita para organizar tareas,
-            colaborar y alcanzar objetivos más rápido.
+            <TextReveal delay={0.6}>
+              La herramienta moderna que tu equipo necesita para organizar tareas,
+              colaborar y alcanzar objetivos más rápido.
+            </TextReveal>
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <a
+            <MagneticButton
               href="#precios"
-              className="group relative px-9 py-4 bg-white text-zinc-950 rounded-2xl font-semibold flex items-center justify-center gap-3 hover:scale-105 transition-all text-lg shadow-xl shadow-white/10 overflow-hidden"
+              className="px-9 py-4 bg-white text-zinc-950 rounded-2xl font-semibold flex items-center justify-center gap-3 text-lg shadow-xl shadow-white/10"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-sky-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-              <span className="relative flex items-center gap-3 group-hover:text-white transition-colors">
-                Comenzar gratis
-                <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-              </span>
-            </a>
+              Comenzar gratis
+              <ArrowRight />
+            </MagneticButton>
 
-            <button className="group px-8 py-4 border border-white/30 hover:bg-white/10 text-white rounded-2xl font-medium flex items-center gap-3 transition-all hover:border-sky-400/50 hover:shadow-lg hover:shadow-sky-500/20">
-              <div className="relative">
-                <Play size={22} className="group-hover:scale-110 transition-transform" />
-                <div className="absolute inset-0 bg-sky-400/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
+            <MagneticButton
+              className="px-8 py-4 border border-white/30 hover:bg-white/10 text-white rounded-2xl font-medium flex items-center gap-3 transition-all hover:border-sky-400/50 hover:shadow-lg hover:shadow-sky-500/20"
+            >
+              <Play size={22} />
               Ver demo
-            </button>
+            </MagneticButton>
           </div>
         </motion.div>
 
@@ -115,10 +121,11 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.1 }}
+          style={{ y: y2 }}
           className="relative"
         >
           <div className="relative rounded-[2.75rem] overflow-hidden shadow-2xl shadow-sky-500/20 border border-white/10 group">
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-linear-to-t from-zinc-950/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <Image
               src="https://picsum.photos/id/1015/820/620"
               alt="TaskFlow Dashboard"

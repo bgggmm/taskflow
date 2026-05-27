@@ -4,6 +4,9 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CustomCursor from "@/components/CustomCursor";
+import GradientMesh from "@/components/GradientMesh";
+import PageLoader from "@/components/PageLoader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +41,10 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-zinc-950 text-white">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <PageLoader />
+          <GradientMesh />
+          <div className="noise-overlay" />
+          <CustomCursor />
           <Navbar />
           <main className="flex-1 pt-0">{children}</main>
           <Footer />

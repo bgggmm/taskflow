@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Quote, Star } from "lucide-react";
+import TiltCard from "./TiltCard";
 
 const testimonials = [
   {
@@ -48,14 +49,14 @@ export default function Testimonials() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((t, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group relative p-8 rounded-3xl bg-white dark:bg-zinc-900/50 backdrop-blur-sm border border-zinc-200 dark:border-zinc-800 hover:border-transparent transition-all duration-300 overflow-hidden"
-            >
+            <TiltCard key={i} intensity={12}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group relative p-8 rounded-3xl bg-white dark:bg-zinc-900/50 backdrop-blur-sm border border-zinc-200 dark:border-zinc-800 hover:border-transparent transition-all duration-300 overflow-hidden h-full"
+              >
               {/* Spotlight effect on hover */}
               <div className={`absolute inset-0 bg-linear-to-br ${t.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
               <div className={`absolute inset-0 bg-linear-to-r ${t.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl`} style={{ opacity: 0 }} />
@@ -99,6 +100,7 @@ export default function Testimonials() {
                 </p>
               </div>
             </motion.div>
+            </TiltCard>
           ))}
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle, Users, BarChart3, Zap, Shield, Clock } from "lucide-react";
+import TiltCard from "./TiltCard";
 
 const features = [
   {
@@ -66,14 +67,14 @@ export default function Features() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group relative p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 backdrop-blur-sm hover:border-transparent transition-all duration-300 overflow-hidden"
-            >
+            <TiltCard key={i} intensity={15}>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group relative p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 backdrop-blur-sm hover:border-transparent transition-all duration-300 overflow-hidden h-full"
+              >
               {/* Animated gradient border on hover */}
               <div className={`absolute inset-0 bg-linear-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
               <div className={`absolute inset-0 bg-linear-to-r ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl group-hover:blur-2xl`} style={{ opacity: 0 }} />
@@ -100,6 +101,7 @@ export default function Features() {
                 </svg>
               </div>
             </motion.div>
+            </TiltCard>
           ))}
         </div>
       </div>
