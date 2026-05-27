@@ -43,15 +43,15 @@ export default function MagneticButton({ children, className = "", onClick, href
     >
       <motion.div
         style={{
-          translateX: mouseX.get(),
-          translateY: mouseY.get(),
+          translateX: mouseX,
+          translateY: mouseY,
         }}
         className="absolute inset-0 bg-linear-to-r from-sky-400 to-blue-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity"
       />
       <motion.div
         style={{
-          translateX: mouseX.get() * 0.3,
-          translateY: mouseY.get() * 0.3,
+          translateX: mouseX,
+          translateY: mouseY,
         }}
         className="relative z-10"
       >

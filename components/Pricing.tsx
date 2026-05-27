@@ -67,7 +67,7 @@ export default function Pricing() {
             >
               {/* Animated gradient border */}
               <div className={`absolute inset-0 bg-linear-to-br ${plan.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-              <div className={`absolute inset-0 bg-linear-to-r ${plan.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl`} style={{ opacity: 0 }} />
+              <div className={`absolute inset-0 bg-linear-to-r ${plan.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl`} />
 
               {/* Glow effect */}
               <div className={`absolute -inset-0.5 bg-linear-to-br ${plan.gradient} rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500`} />
