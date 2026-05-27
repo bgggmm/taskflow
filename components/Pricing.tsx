@@ -57,26 +57,27 @@ export default function Pricing() {
 
         <div className="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
           {plans.map((plan, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className={`group relative rounded-3xl p-10 bg-white dark:bg-zinc-900 ${plan.popular ? 'scale-105 shadow-2xl shadow-sky-500/20' : 'shadow-xl'} overflow-visible h-full flex flex-col min-h-[450px]`}
-            >
-              {/* Badge FUERA del div z-10 */}
+            <div key={i} className="relative pt-4">
+              {/* Badge fuera del card para no ser cortado por overflow-hidden */}
               {plan.popular && (
                 <motion.div
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 + 0.2 }}
-                  className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 bg-linear-to-r from-sky-500 to-blue-600 text-white text-sm px-4 py-1 rounded-full shadow-lg shadow-sky-500/50 whitespace-nowrap"
+                  className="absolute top-0 left-1/2 -translate-x-1/2 z-20 bg-linear-to-r from-sky-500 to-blue-600 text-white text-sm px-4 py-1 rounded-full shadow-lg shadow-sky-500/50 whitespace-nowrap"
                 >
                   MÁS POPULAR
                 </motion.div>
               )}
+
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className={`group relative rounded-3xl p-10 bg-white dark:bg-zinc-900 ${plan.popular ? 'scale-105 shadow-2xl shadow-sky-500/20' : 'shadow-xl'} overflow-hidden h-full flex flex-col min-h-[450px]`}
+            >
 
               {/* Animated gradient border */}
               <div className={`absolute inset-0 bg-linear-to-br ${plan.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
@@ -126,6 +127,7 @@ export default function Pricing() {
                 </motion.button>
               </div>
             </motion.div>
+            </div>
           ))}
         </div>
       </div>
