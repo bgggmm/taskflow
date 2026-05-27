@@ -45,7 +45,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-24 bg-white dark:bg-zinc-900 relative overflow-hidden">
+    <section id="features" className="py-32 bg-white dark:bg-zinc-900 relative overflow-hidden">
       {/* Background gradient decoration */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-200 h-200 bg-linear-to-br from-sky-100 to-transparent dark:from-sky-900/20 rounded-full blur-[120px] pointer-events-none" />
 
@@ -65,7 +65,7 @@ export default function Features() {
           </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {features.map((feature, i) => (
             <TiltCard key={i} intensity={15}>
               <motion.div
@@ -73,7 +73,7 @@ export default function Features() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group relative p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 backdrop-blur-sm hover:border-transparent transition-all duration-300 overflow-hidden h-full flex flex-col min-h-80"
+                className="group relative p-10 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 backdrop-blur-sm hover:border-transparent transition-all duration-300 overflow-hidden h-full flex flex-col min-h-80"
               >
               {/* Animated gradient border on hover */}
               <div className={`absolute inset-0 bg-linear-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />

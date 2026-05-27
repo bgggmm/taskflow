@@ -38,7 +38,7 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section id="precios" className="py-24 bg-zinc-50 dark:bg-zinc-950 relative overflow-hidden">
+    <section id="precios" className="py-32 bg-zinc-50 dark:bg-zinc-950 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-250 h-250 bg-linear-to-br from-sky-100/50 to-purple-100/50 dark:from-sky-900/10 dark:to-purple-900/10 rounded-full blur-[150px] pointer-events-none" />
 
@@ -55,7 +55,7 @@ export default function Pricing() {
           <p className="text-xl text-zinc-600 dark:text-zinc-400">Elige el que mejor se adapte a tu equipo</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
           {plans.map((plan, i) => (
             <motion.div
               key={i}
@@ -63,7 +63,7 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`group relative rounded-3xl p-8 bg-white dark:bg-zinc-900 ${plan.popular ? 'scale-105 shadow-2xl shadow-sky-500/20' : 'shadow-xl'} overflow-hidden h-full flex flex-col min-h-[450px]`}
+              className={`group relative rounded-3xl p-10 bg-white dark:bg-zinc-900 ${plan.popular ? 'scale-105 shadow-2xl shadow-sky-500/20' : 'shadow-xl'} overflow-hidden h-full flex flex-col min-h-[450px]`}
             >
               {/* Animated gradient border */}
               <div className={`absolute inset-0 bg-linear-to-br ${plan.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />

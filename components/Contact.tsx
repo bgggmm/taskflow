@@ -58,7 +58,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contacto" className="py-24 bg-zinc-900 text-white relative overflow-hidden">
+    <section id="contacto" className="py-32 bg-zinc-900 text-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 bg-linear-to-br from-sky-500/10 to-purple-500/10 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(at_50%_0%,rgba(14,165,233,0.1),transparent_50%)] pointer-events-none" />
@@ -81,12 +81,12 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           onSubmit={handleSubmit}
-          className="space-y-8 relative"
+          className="space-y-12 relative"
         >
           {/* Form background glow */}
           <div className="absolute inset-0 bg-linear-to-br from-sky-500/5 to-purple-500/5 rounded-3xl blur-3xl pointer-events-none" />
-          <div className="relative bg-zinc-800/30 backdrop-blur-xl border border-zinc-700/50 rounded-3xl p-8 md:p-12 shadow-2xl shadow-black/50">
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="relative bg-zinc-800/30 backdrop-blur-xl border border-zinc-700/50 rounded-3xl p-10 md:p-16 shadow-2xl shadow-black/50">
+          <div className="grid md:grid-cols-2 gap-10">
             <div className="relative group">
               <User className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors z-10 ${focusedField === 'name' ? 'text-sky-400 scale-110' : 'text-zinc-500'}`} size={20} />
               <input

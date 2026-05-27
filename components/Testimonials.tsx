@@ -31,7 +31,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonios" className="py-24 bg-zinc-100 dark:bg-zinc-950 relative overflow-hidden">
+    <section id="testimonios" className="py-32 bg-zinc-100 dark:bg-zinc-950 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-200 h-200 bg-linear-to-br from-purple-100/50 to-pink-100/50 dark:from-purple-900/10 dark:to-pink-900/10 rounded-full blur-[120px] pointer-events-none" />
 
@@ -47,7 +47,7 @@ export default function Testimonials() {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-10">
           {testimonials.map((t, i) => (
             <TiltCard key={i} intensity={12}>
               <motion.div
@@ -55,7 +55,7 @@ export default function Testimonials() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group relative p-8 rounded-3xl bg-white dark:bg-zinc-900/50 backdrop-blur-sm border border-zinc-200 dark:border-zinc-800 hover:border-transparent transition-all duration-300 overflow-hidden h-full flex flex-col min-h-96"
+                className="group relative p-10 rounded-3xl bg-white dark:bg-zinc-900/50 backdrop-blur-sm border border-zinc-200 dark:border-zinc-800 hover:border-transparent transition-all duration-300 overflow-hidden h-full flex flex-col min-h-96"
               >
               {/* Spotlight effect on hover */}
               <div className={`absolute inset-0 bg-linear-to-br ${t.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
