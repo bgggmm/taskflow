@@ -61,6 +61,7 @@ export default function Contact() {
     <section id="contacto" className="py-24 bg-zinc-900 text-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 bg-linear-to-br from-sky-500/10 to-purple-500/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(at_50%_0%,rgba(14,165,233,0.1),transparent_50%)] pointer-events-none" />
 
       <div className="max-w-3xl mx-auto px-6 relative z-10">
         <motion.div
@@ -80,11 +81,14 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           onSubmit={handleSubmit}
-          className="space-y-6"
+          className="space-y-6 relative"
         >
+          {/* Form background glow */}
+          <div className="absolute inset-0 bg-linear-to-br from-sky-500/5 to-purple-500/5 rounded-3xl blur-3xl pointer-events-none" />
+          <div className="relative bg-zinc-800/30 backdrop-blur-xl border border-zinc-700/50 rounded-3xl p-8 md:p-12 shadow-2xl shadow-black/50">
           <div className="grid md:grid-cols-2 gap-6">
             <div className="relative group">
-              <User className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${focusedField === 'name' ? 'text-sky-400' : 'text-zinc-500'}`} size={20} />
+              <User className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors z-10 ${focusedField === 'name' ? 'text-sky-400 scale-110' : 'text-zinc-500'}`} size={20} />
               <input
                 type="text"
                 placeholder="Nombre completo"
@@ -93,13 +97,14 @@ export default function Contact() {
                 onFocus={() => setFocusedField('name')}
                 onBlur={() => setFocusedField(null)}
                 required
-                className={`w-full bg-zinc-800/50 backdrop-blur-sm border rounded-2xl px-12 py-4 focus:outline-none transition-all duration-300 ${focusedField === 'name' ? 'border-sky-500 shadow-lg shadow-sky-500/20' : 'border-zinc-700 hover:border-zinc-600'}`}
+                className={`relative z-10 w-full bg-zinc-800/50 backdrop-blur-sm border rounded-2xl px-12 py-4 focus:outline-none transition-all duration-300 ${focusedField === 'name' ? 'border-sky-500 shadow-lg shadow-sky-500/20 bg-zinc-700/70' : 'border-zinc-600 hover:border-zinc-500'}`}
               />
-              <div className={`absolute inset-0 bg-linear-to-r from-sky-500/10 to-purple-500/10 rounded-2xl opacity-0 transition-opacity duration-300 ${focusedField === 'name' ? 'opacity-100' : ''}`} />
+              <div className={`absolute inset-0 bg-linear-to-r from-sky-500/10 to-purple-500/10 rounded-2xl opacity-0 transition-opacity duration-300 pointer-events-none ${focusedField === 'name' ? 'opacity-100' : ''}`} />
+              <div className={`absolute -inset-0.5 bg-linear-to-r from-sky-500 to-purple-500 rounded-2xl opacity-0 blur transition-opacity duration-300 pointer-events-none ${focusedField === 'name' ? 'opacity-20' : ''}`} />
             </div>
 
             <div className="relative group">
-              <Mail className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${focusedField === 'email' ? 'text-sky-400' : 'text-zinc-500'}`} size={20} />
+              <Mail className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors z-10 ${focusedField === 'email' ? 'text-sky-400 scale-110' : 'text-zinc-500'}`} size={20} />
               <input
                 type="email"
                 placeholder="Email corporativo"
@@ -108,14 +113,15 @@ export default function Contact() {
                 onFocus={() => setFocusedField('email')}
                 onBlur={() => setFocusedField(null)}
                 required
-                className={`w-full bg-zinc-800/50 backdrop-blur-sm border rounded-2xl px-12 py-4 focus:outline-none transition-all duration-300 ${focusedField === 'email' ? 'border-sky-500 shadow-lg shadow-sky-500/20' : 'border-zinc-700 hover:border-zinc-600'}`}
+                className={`relative z-10 w-full bg-zinc-800/50 backdrop-blur-sm border rounded-2xl px-12 py-4 focus:outline-none transition-all duration-300 ${focusedField === 'email' ? 'border-sky-500 shadow-lg shadow-sky-500/20 bg-zinc-700/70' : 'border-zinc-600 hover:border-zinc-500'}`}
               />
-              <div className={`absolute inset-0 bg-linear-to-r from-sky-500/10 to-purple-500/10 rounded-2xl opacity-0 transition-opacity duration-300 ${focusedField === 'email' ? 'opacity-100' : ''}`} />
+              <div className={`absolute inset-0 bg-linear-to-r from-sky-500/10 to-purple-500/10 rounded-2xl opacity-0 transition-opacity duration-300 pointer-events-none ${focusedField === 'email' ? 'opacity-100' : ''}`} />
+              <div className={`absolute -inset-0.5 bg-linear-to-r from-sky-500 to-purple-500 rounded-2xl opacity-0 blur transition-opacity duration-300 pointer-events-none ${focusedField === 'email' ? 'opacity-20' : ''}`} />
             </div>
           </div>
 
           <div className="relative group">
-            <Building className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${focusedField === 'company' ? 'text-sky-400' : 'text-zinc-500'}`} size={20} />
+            <Building className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors z-10 ${focusedField === 'company' ? 'text-sky-400 scale-110' : 'text-zinc-500'}`} size={20} />
             <input
               type="text"
               placeholder="Empresa"
@@ -123,9 +129,10 @@ export default function Contact() {
               onChange={(e) => setFormData({ ...formData, company: e.target.value })}
               onFocus={() => setFocusedField('company')}
               onBlur={() => setFocusedField(null)}
-              className={`w-full bg-zinc-800/50 backdrop-blur-sm border rounded-2xl px-12 py-4 focus:outline-none transition-all duration-300 ${focusedField === 'company' ? 'border-sky-500 shadow-lg shadow-sky-500/20' : 'border-zinc-700 hover:border-zinc-600'}`}
+              className={`relative z-10 w-full bg-zinc-800/50 backdrop-blur-sm border rounded-2xl px-12 py-4 focus:outline-none transition-all duration-300 ${focusedField === 'company' ? 'border-sky-500 shadow-lg shadow-sky-500/20 bg-zinc-700/70' : 'border-zinc-600 hover:border-zinc-500'}`}
             />
-            <div className={`absolute inset-0 bg-linear-to-r from-sky-500/10 to-purple-500/10 rounded-2xl opacity-0 transition-opacity duration-300 ${focusedField === 'company' ? 'opacity-100' : ''}`} />
+            <div className={`absolute inset-0 bg-linear-to-r from-sky-500/10 to-purple-500/10 rounded-2xl opacity-0 transition-opacity duration-300 pointer-events-none ${focusedField === 'company' ? 'opacity-100' : ''}`} />
+            <div className={`absolute -inset-0.5 bg-linear-to-r from-sky-500 to-purple-500 rounded-2xl opacity-0 blur transition-opacity duration-300 pointer-events-none ${focusedField === 'company' ? 'opacity-20' : ''}`} />
           </div>
 
           <div className="relative group">
@@ -137,9 +144,10 @@ export default function Contact() {
               onFocus={() => setFocusedField('message')}
               onBlur={() => setFocusedField(null)}
               required
-              className={`w-full bg-zinc-800/50 backdrop-blur-sm border rounded-2xl px-6 py-4 focus:outline-none transition-all duration-300 resize-none ${focusedField === 'message' ? 'border-sky-500 shadow-lg shadow-sky-500/20' : 'border-zinc-700 hover:border-zinc-600'}`}
+              className={`relative z-10 w-full bg-zinc-800/50 backdrop-blur-sm border rounded-2xl px-6 py-4 focus:outline-none transition-all duration-300 resize-none ${focusedField === 'message' ? 'border-sky-500 shadow-lg shadow-sky-500/20 bg-zinc-700/70' : 'border-zinc-600 hover:border-zinc-500'}`}
             />
-            <div className={`absolute inset-0 bg-linear-to-r from-sky-500/10 to-purple-500/10 rounded-2xl opacity-0 transition-opacity duration-300 ${focusedField === 'message' ? 'opacity-100' : ''}`} />
+            <div className={`absolute inset-0 bg-linear-to-r from-sky-500/10 to-purple-500/10 rounded-2xl opacity-0 transition-opacity duration-300 pointer-events-none ${focusedField === 'message' ? 'opacity-100' : ''}`} />
+            <div className={`absolute -inset-0.5 bg-linear-to-r from-sky-500 to-purple-500 rounded-2xl opacity-0 blur transition-opacity duration-300 pointer-events-none ${focusedField === 'message' ? 'opacity-20' : ''}`} />
           </div>
 
           <motion.button
@@ -161,6 +169,7 @@ export default function Contact() {
               )}
             </span>
           </motion.button>
+          </div>
         </motion.form>
 
         {success && (
