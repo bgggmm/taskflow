@@ -63,7 +63,7 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`group relative rounded-3xl p-8 bg-white dark:bg-zinc-900 ${plan.popular ? 'scale-105 shadow-2xl shadow-sky-500/20' : 'shadow-xl'} overflow-hidden`}
+              className={`group relative rounded-3xl p-8 bg-white dark:bg-zinc-900 ${plan.popular ? 'scale-105 shadow-2xl shadow-sky-500/20' : 'shadow-xl'} overflow-hidden h-full flex flex-col min-h-[450px]`}
             >
               {/* Animated gradient border */}
               <div className={`absolute inset-0 bg-linear-to-br ${plan.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />

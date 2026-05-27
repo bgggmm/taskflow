@@ -55,7 +55,7 @@ export default function Testimonials() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group relative p-8 rounded-3xl bg-white dark:bg-zinc-900/50 backdrop-blur-sm border border-zinc-200 dark:border-zinc-800 hover:border-transparent transition-all duration-300 overflow-hidden h-full"
+                className="group relative p-8 rounded-3xl bg-white dark:bg-zinc-900/50 backdrop-blur-sm border border-zinc-200 dark:border-zinc-800 hover:border-transparent transition-all duration-300 overflow-hidden h-full flex flex-col min-h-96"
               >
               {/* Spotlight effect on hover */}
               <div className={`absolute inset-0 bg-linear-to-br ${t.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />

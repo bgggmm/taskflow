@@ -81,12 +81,12 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           onSubmit={handleSubmit}
-          className="space-y-6 relative"
+          className="space-y-8 relative"
         >
           {/* Form background glow */}
           <div className="absolute inset-0 bg-linear-to-br from-sky-500/5 to-purple-500/5 rounded-3xl blur-3xl pointer-events-none" />
           <div className="relative bg-zinc-800/30 backdrop-blur-xl border border-zinc-700/50 rounded-3xl p-8 md:p-12 shadow-2xl shadow-black/50">
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-8">
             <div className="relative group">
               <User className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors z-10 ${focusedField === 'name' ? 'text-sky-400 scale-110' : 'text-zinc-500'}`} size={20} />
               <input
