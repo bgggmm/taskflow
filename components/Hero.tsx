@@ -5,7 +5,6 @@ import { ArrowRight, Play } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import MagneticButton from "./MagneticButton";
-import TextReveal from "./TextReveal";
 
 export default function Hero() {
   const { scrollY } = useScroll();
@@ -86,17 +85,15 @@ export default function Hero() {
           </div>
 
           <h1 className="text-6xl md:text-7xl font-bold leading-[1.05] text-white mb-6">
-            <TextReveal delay={0.2}>Fluye mejor.</TextReveal><br />
+            Fluye mejor.<br />
             <span className="bg-linear-to-r from-sky-400 via-blue-500 to-purple-500 bg-clip-text text-transparent animate-gradient">
-              <TextReveal delay={0.4}>Produce más.</TextReveal>
+              Produce más.
             </span>
           </h1>
 
           <p className="text-xl text-zinc-300 mb-10 max-w-lg">
-            <TextReveal delay={0.6}>
-              La herramienta moderna que tu equipo necesita para organizar tareas,
-              colaborar y alcanzar objetivos más rápido.
-            </TextReveal>
+            La herramienta moderna que tu equipo necesita para organizar tareas,
+            colaborar y alcanzar objetivos más rápido.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
