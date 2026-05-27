@@ -47,7 +47,7 @@ export default function Features() {
   return (
     <section id="features" className="py-32 bg-white dark:bg-zinc-900 relative overflow-hidden">
       {/* Background gradient decoration */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-200 h-200 bg-linear-to-br from-sky-100 to-transparent dark:from-sky-900/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-96 bg-linear-to-br from-sky-100 to-transparent dark:from-sky-900/20 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
@@ -56,6 +56,9 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
+            <span className="inline-block text-sm font-semibold text-sky-500 tracking-widest uppercase mb-4">
+              Funcionalidades
+            </span>
             <h2 className="text-5xl font-bold mb-4 bg-linear-to-r from-zinc-900 to-zinc-600 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent">
               Todo lo que necesitas
             </h2>
@@ -65,7 +68,7 @@ export default function Features() {
           </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, i) => (
             <TiltCard key={i} intensity={15}>
               <motion.div
@@ -73,34 +76,33 @@ export default function Features() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group relative p-10 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 backdrop-blur-sm hover:border-transparent transition-all duration-300 overflow-hidden h-full flex flex-col min-h-80"
+                className="group relative p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 backdrop-blur-sm hover:border-transparent transition-all duration-300 overflow-hidden h-full flex flex-col min-h-72"
               >
-              {/* Animated gradient border on hover */}
-              <div className={`absolute inset-0 bg-linear-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
-              <div className={`absolute inset-0 bg-linear-to-r ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl group-hover:blur-2xl`} style={{ opacity: 0 }} />
+                {/* Gradient background on hover */}
+                <div className={`absolute inset-0 bg-linear-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
 
-              {/* Glow effect */}
-              <div className={`absolute -inset-1 bg-linear-to-r ${feature.gradient} rounded-3xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300`} />
+                {/* Glow */}
+                <div className={`absolute -inset-1 bg-linear-to-r ${feature.gradient} rounded-3xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300`} />
 
-              <div className="relative z-10">
-                <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${feature.gradient} p-3 mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg shadow-${feature.gradient.split('-')[1]}-500/25`}>
-                  <div className="text-white">{feature.icon}</div>
+                <div className="relative z-10">
+                  <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${feature.gradient} p-3 mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg`}>
+                    <div className="text-white">{feature.icon}</div>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 text-zinc-900 dark:text-white group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-zinc-900 group-hover:to-zinc-600 dark:group-hover:from-white dark:group-hover:to-zinc-400 group-hover:bg-clip-text transition-all">
+                    {feature.title}
+                  </h3>
+                  <p className="text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors leading-relaxed">
+                    {feature.desc}
+                  </p>
                 </div>
-                <h3 className="text-2xl font-semibold mb-3 group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-zinc-900 group-hover:to-zinc-600 dark:group-hover:from-white dark:group-hover:to-zinc-400 group-hover:bg-clip-text transition-all">
-                  {feature.title}
-                </h3>
-                <p className="text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors">
-                  {feature.desc}
-                </p>
-              </div>
 
-              {/* Arrow indicator */}
-              <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
-                <svg className="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            </motion.div>
+                {/* Arrow */}
+                <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                  <svg className="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </motion.div>
             </TiltCard>
           ))}
         </div>
